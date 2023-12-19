@@ -49,7 +49,7 @@ $(document).ready(function(e) {
 	
 	chart = new CanvasJS.Chart("chartContainer", {
 		title: {
-			text: "Temperature & Humidity"
+			text: "Temperature Roof & Room"
 		},
 		axisX:{  
 			valueFormatString: "HH:mm"
@@ -61,8 +61,8 @@ $(document).ready(function(e) {
 			shared: true,
 			contentFormatter: function (e) {
 				var content = CanvasJS.formatDate(e.entries[0].dataPoint.x, "HH:mm:ss") + "<br>";
-				content += "<strong>Temperature</strong>: " + e.entries[0].dataPoint.y + " &deg;C<br>";
-				content += "<strong>Humidity</strong>: " + e.entries[1].dataPoint.y + " %";
+				content += "<strong>Temperature-Roof</strong>: " + e.entries[0].dataPoint.y + " &deg;C<br>";
+				content += "<strong>Temperature-Room</strong>: " + e.entries[1].dataPoint.y + " &deg;C";
 				return content;
 			}
 		},
@@ -106,7 +106,7 @@ $(document).ready(function(e) {
 			$("#temperature").removeClass("danger").addClass("success");
 		}		
 
-		$("#humidity > .content").text(row.humidity + " %");
+		$("#humidity > .content").html(row.humidity + " &deg;C");
 
 		if (row.auto1 == 1 ) {
 			$("#auto > .content").text("ON");
@@ -154,7 +154,7 @@ $(document).ready(function(e) {
 		
 		var Arow = lastRows;
 		$("#temperature > .content").html(Arow.temperature + " &deg;C");
-		$("#humidity > .content").text(Arow.humidity + " %");
+		$("#humidity > .content").html(Arow.humidity + " &deg;C");
 
 		if (Arow.auto1 == 1 ) {
 			$("#auto > .content").text("ON");
@@ -289,13 +289,13 @@ var setTimeoffline = function() {
            <div class="col-sm-4">
              <div class="dialog primary fadeIn animated" id="temperature">
                <div class="content">00.0 &deg;C</div>
-               <div class="title">Temperature</div>
+               <div class="title">Temperature [ Roof ]</div>
              </div>
            </div>
            <div class="col-sm-4">
              <div class="dialog info fadeIn animated" id="humidity">
-               <div class="content">00.0 %</div>
-               <div class="title">Humidity</div>
+               <div class="content">00.0 &deg;C</div>
+               <div class="title">Temperature [ Room ]</div>
              </div>
            </div>
            <div class="col-sm-4">
@@ -309,10 +309,10 @@ var setTimeoffline = function() {
 				<div class="dialog success fadeIn animated" id="fan1">
 				  <div class="content">
 						<center>
-							<img src="img/airflow_off.gif" id="fan01"  width="26%">
+							<img src="img/airflow_off.gif" id="fan01"  width="24%">
 						</center>
 					</div>
-				  <div class="title">AirFlow [ INSITE ]</div>
+				  <div class="title">AirFlow Fan1 [ Roof ]</div>
 				</div>
 			 </div>
 			 
@@ -320,18 +320,18 @@ var setTimeoffline = function() {
 				<div class="dialog success fadeIn animated" id="fan2">
 				  <div class="content">
 						<center>
-							<img src="img/airflow_off.gif" id="fan02"  width="26%">
+							<img src="img/airflow_off.gif" id="fan02"  width="24%">
 						</center>
 					</div>
-				  <div class="title">AirFlow [ OUTSITE ]</div>
+				  <div class="title">AirFlow Fan2 [ Room ]</div>
 				</div>
 			 </div>
 
 			 <div class="col-sm-4">
 				<div class="dialog success fadeIn animated" id="auto">
 				  <div class="content">???</div>
-				  <div class="title">
-					<button id = "auto_mode" class="Button" >Automation-Mode</button>
+				  <div class="title"> Automation Mode
+					<!-- <button id = "auto_mode" class="Button" >Automation-Mode</button> -->
 				  </div>
 				</div>
 			 </div>
